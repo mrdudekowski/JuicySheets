@@ -1,0 +1,203 @@
+/* Стили для зоны перетаскивания */
+.drag-drop-zone {
+  position: relative;
+  min-height: 60px;
+  max-height: 80px;
+  height: 60px;
+  border: 2px dashed rgba(102, 126, 234, 0.4);
+  border-radius: 8px;
+  background: rgba(102, 126, 234, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.drag-drop-zone:hover {
+  border-color: rgba(102, 126, 234, 0.6);
+  background: rgba(102, 126, 234, 0.15);
+}
+
+/* Состояние перетаскивания */
+.drag-drop-zone.drag-over {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  border-style: solid;
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+/* Контент зоны */
+.zone-content {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay при перетаскивании */
+.drag-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(102, 126, 234, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeIn 0.3s ease;
+}
+
+.drag-overlay-content {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.drag-overlay-content .drag-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s infinite;
+}
+
+.drag-overlay-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.drag-overlay-content p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.drag-overlay-content strong {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Индикатор пустой зоны */
+.empty-zone-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.empty-zone-indicator p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .drag-drop-zone {
+    min-height: 100px;
+  }
+  
+  .zone-content {
+    min-height: 100px;
+    padding: 0.8rem;
+  }
+  
+  .drag-overlay-content {
+    padding: 1.5rem;
+  }
+  
+  .drag-overlay-content .drag-icon {
+    font-size: 2.5rem;
+  }
+  
+  .drag-overlay-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .drag-overlay-content p {
+    font-size: 0.9rem;
+  }
+  
+  .empty-icon {
+    font-size: 2rem;
+  }
+  
+  .empty-zone-indicator p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .drag-drop-zone {
+    min-height: 80px;
+  }
+  
+  .zone-content {
+    min-height: 80px;
+    padding: 0.6rem;
+  }
+  
+  .drag-overlay-content {
+    padding: 1rem;
+  }
+  
+  .drag-overlay-content .drag-icon {
+    font-size: 2rem;
+  }
+  
+  .drag-overlay-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .drag-overlay-content p {
+    font-size: 0.8rem;
+  }
+  
+  .empty-icon {
+    font-size: 1.5rem;
+  }
+  
+  .empty-zone-indicator p {
+    font-size: 0.8rem;
+  }
+}

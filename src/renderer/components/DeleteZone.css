@@ -1,0 +1,139 @@
+/* Стили для зоны удаления */
+@import '../styles/tokens.css';
+.delete-zone {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 120px;
+  height: 80px;
+  background: var(--accent-red-soft);
+  border: 2px dashed rgba(255, 107, 107, 0.5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  z-index: 10000;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.delete-zone:hover {
+  opacity: 0.8;
+  background: rgba(255, 107, 107, 0.08);
+  border-color: rgba(255, 107, 107, 0.4);
+  transform: scale(1.05);
+}
+
+.delete-zone.drag-over {
+  background: rgba(255, 107, 107, 0.15);
+  border-color: rgba(255, 107, 107, 0.6);
+  border-style: solid;
+  transform: scale(1.1);
+  box-shadow: var(--glass-shadow);
+  opacity: 0.9;
+}
+
+.delete-zone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.trash-icon {
+  font-size: 1.5rem;
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+}
+
+.delete-zone.drag-over .trash-icon {
+  filter: grayscale(0);
+  transform: scale(1.2);
+}
+
+.delete-text {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 107, 107, 0.8);
+  line-height: 1.2;
+  max-width: 100px;
+}
+
+.delete-zone.drag-over .delete-text {
+  color: rgba(255, 107, 107, 0.9);
+  font-weight: 600;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.delete-zone {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Анимация при hover */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.delete-zone:hover {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .delete-zone {
+    width: 100px;
+    height: 70px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .trash-icon {
+    font-size: 1.2rem;
+  }
+  
+  .delete-text {
+    font-size: 0.55rem;
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .delete-zone {
+    width: 80px;
+    height: 60px;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .trash-icon {
+    font-size: 1rem;
+  }
+  
+  .delete-text {
+    font-size: 0.5rem;
+    max-width: 60px;
+  }
+}
